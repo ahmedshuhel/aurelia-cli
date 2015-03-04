@@ -1,0 +1,21 @@
+{
+  "name": "aurelia-cli",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "aurelia": "./bin/aurelia.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "glob": "^4.4.1",
+    "interpret": "^0.5.1",
+    "liftoff": "^2.0.2",
+    "minimist": "^1.1.0",
+    "whacko": "^0.17.4"
+  }
+}
