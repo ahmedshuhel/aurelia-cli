@@ -1,6 +1,7 @@
 var glob = require('glob');
 var whacko = require('whacko');
 var constants = require('./constants');
+var utils = require('./utils');
 var fs = require('fs');
 var read = {};
 
@@ -9,22 +10,34 @@ bundle();
 function bundle() {
   // reset shared buffers
   read = {};
-  var templates = [];
 
+  var templates = [];
   $ = whacko.load('<html><head></head><body></body></html>');
+
   var files = glob.sync('dist/*.html', {});
 
   files.forEach(function(t) {
+    // load the template
     var $$ = whacko.load(readFile(t));
+    // search the links
+    // extract the path
+    // check if already read
+    // load the template
+    // id the tempate
+    // repeat
+
+
+    // finaly concatenate together
     var template = $$('head').html();
     templates.push(template);
   });
-  var content = templates.join('\n');
 
+  var content = templates.join('\n');
 
   $('body').prepend(content);
   fs.writeFileSync('bundle.html', $.html(), 'utf8');
 }
+
 
 function readFile(file) {
   var content = fs.readFileSync(file, 'utf8');

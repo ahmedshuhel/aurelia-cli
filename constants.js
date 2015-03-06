@@ -6,7 +6,7 @@ module.exports = {
   ABS_URL: /(^\/)|(^#)|(^[\w-\d]*:)/,
   REMOTE_ABS_URL: /(^http[s]?:)|(^\/\/)/,
   IMPORTS: 'link[rel="import"][href]',
-  AURELIA_IMPORTS: 'import[src]',
+  AURELIA_IMPORTS: 'import[from]',
   URL: /url\([^)]*\)/g,
   URL_ATTR: URL_ATTR,
   URL_ATTR_SEL: '[' + URL_ATTR.join('],[') + ']',
