@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "commander": "^2.6.0",
     "glob": "^4.4.1",
     "interpret": "^0.5.1",
     "liftoff": "^2.0.2",

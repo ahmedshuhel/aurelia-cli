@@ -3,7 +3,7 @@
 const Liftoff = require('liftoff');
 const argv = require('minimist')(process.argv.slice(2));
 
-const Aurelia = new Liftoff({
+const AureliaCLI = new Liftoff({
   name: 'aurelia-cli',
   configName: 'Aureliafile',
   extensions: require('interpret').jsVariants,
@@ -20,7 +20,7 @@ const Aurelia = new Liftoff({
   console.log('Respawned to PID:', child.pid);
 });
 
-Aurelia.launch({
+AureliaCLI.launch({
   cwd: argv.cwd,
   configPath: argv.aureliafile,
   require: argv.require,
@@ -58,5 +58,9 @@ function invoke(env) {
     console.log('No Aureliafile found.');
   }
 
-  require('../index.js');
+  var Aurelia = require(env.modulePath);
+  var aurelia = new Aurelia(env);
+  require(env.configPath)(aurelia);
+
+  aurelia.run(process.argv);
 }
