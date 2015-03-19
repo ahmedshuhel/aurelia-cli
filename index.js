@@ -5,6 +5,10 @@ function Aurelia(env) {
   this.env = env;
 }
 
+Aurelia.prototype.bundleConfig = function(config) {
+  this.bundleConfig = config;
+}
+
 Aurelia.prototype.run = function(argv) {
   var self = this;
 
@@ -15,13 +19,17 @@ Aurelia.prototype.run = function(argv) {
     .command('bundle')
     .description('run bundle command')
     .action(function(options) {
-       bundler.bundleTmpl();
+      var templateBundleConfig = self.bundleConfig.tmpl;
+      var jsBundleConfig = self.bundleConfig.js;
+
+      bundler.bundleTemplate(templateBundleConfig);
+      bundler.bundleJs(jsBundleConfig);
     });
 
   program
-    .command('*')
-    .action(function(env) {
-      console.log('deploying "%s"', env);
+    .command('new')
+    .action(function(options) {
+      console.log('set a new aurelia project');
     });
 
   program.parse(argv);

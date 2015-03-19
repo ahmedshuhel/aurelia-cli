@@ -52,9 +52,7 @@ function invoke(env) {
     process.exit(1);
   }
 
-  if (env.configPath) {
-    require(env.configPath);
-  } else {
+  if (!env.configPath) {
     console.log('No Aureliafile found.');
   }
 

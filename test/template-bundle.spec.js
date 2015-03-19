@@ -1,5 +1,5 @@
 var assert = require('assert');
-var utils = require('./utils');
+var utils = require('../lib/bundle');
 var whacko = require('whacko');
 
 describe('template bundle', function() {
@@ -13,17 +13,14 @@ describe('template bundle', function() {
     '  </div> ' +
     ' </template> ';
 
-  it('extracts imports from the template', function() {
+  it('sets the path attribute to template', function(){
     var $ = whacko.load(template);
-    var imports = utils.searchImports($);
-    assert.equal(imports.length, 2);
+
+    bundler.setId($, 'dist/navbar');
+    assertId($);
   });
 
-  it('returns the template paths', function() {
-    var $ = whacko.load(template);
-    var imports = utils.getTemplatePaths($);
-    assert.equal(imports[1], './side-bar.html');
-    assert.equal(imports[0], './nav-bar.html');
-  });
-
+  function assertId($){
+     assert.equal($('#dist\\/navbar').attr('id'), 'dist/navbar');
+  }
 })
